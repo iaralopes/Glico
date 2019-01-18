@@ -1,14 +1,12 @@
-package com.example.iaralopes.glico
+package com.example.iaralopes.glico.app
 
 import android.app.Application
-import com.example.iaralopes.glico.ApplicationModule
-import com.example.iaralopes.glico.ApplicationComponent
+import com.example.iaralopes.glico.app.DaggerApplicationComponent
 
 class GlicoApplication : Application() {
 
     val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
-        DaggerApplicationComponent
-            .builder()
+        DaggerApplicationComponent.builder()
             .applicationModule(ApplicationModule(this))
             .build()
     }

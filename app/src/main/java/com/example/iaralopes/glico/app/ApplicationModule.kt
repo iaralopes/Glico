@@ -1,6 +1,7 @@
-package com.example.iaralopes.glico
+package com.example.iaralopes.glico.app
 
 import android.content.Context
+import com.example.iaralopes.glico.utils.CoroutineContextProvider
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -13,5 +14,10 @@ class ApplicationModule(private val context: Context){
     @Singleton
     @Named("ApplicationContext")
     fun provideContext(): Context = context
+
+    @Provides
+    @Singleton
+    fun provideCoroutineContextProvider(): CoroutineContextProvider
+            = CoroutineContextProvider()
 
 }
