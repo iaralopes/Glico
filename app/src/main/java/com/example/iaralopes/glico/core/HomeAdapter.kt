@@ -8,7 +8,7 @@ import com.example.iaralopes.glico.R
 import com.example.iaralopes.glico.data.GlucoseEntity
 import kotlinx.android.synthetic.main.item_historic.view.*
 
-class HomeAdapter (val list: List<GlucoseEntity>) :
+class HomeAdapter (var list: List<GlucoseEntity>) :
     androidx.recyclerview.widget.RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     private lateinit var context: Context
