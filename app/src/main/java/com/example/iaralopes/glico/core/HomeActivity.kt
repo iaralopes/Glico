@@ -112,6 +112,9 @@ class HomeActivity : BaseActivity() {
                 FilterGlucoseTypes.POSALMOCO.filter -> {
                     sortGlucoseList = originalGlucoseList.filter { it.category == FilterGlucoseTypes.POSALMOCO.filter}
                 }
+                FilterGlucoseTypes.ANTESLANCHE.filter -> {
+                    sortGlucoseList = originalGlucoseList.filter { it.category == FilterGlucoseTypes.ANTESLANCHE.filter}
+                }
                 FilterGlucoseTypes.POSLANCHE.filter -> {
                     sortGlucoseList = originalGlucoseList.filter { it.category == FilterGlucoseTypes.POSLANCHE.filter}
                 }
