@@ -1,11 +1,11 @@
-package com.example.iaralopes.glico.base
+package com.example.iaralopes.glico.base.view
 
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.iaralopes.glico.R
-import com.example.iaralopes.glico.app.ApplicationComponent
+import com.example.iaralopes.glico.app.di.ApplicationComponent
 import com.example.iaralopes.glico.app.GlicoApplication
 import com.example.iaralopes.glico.base.viewModel.ViewModelFactory
 import java.lang.Exception

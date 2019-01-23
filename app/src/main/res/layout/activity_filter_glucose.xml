@@ -3,12 +3,12 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".core.FilterGlucoseActivity">
+        tools:context=".core.filterGlucose.FilterGlucoseActivity">
 
     <data>
         <variable
                 name="viewModel"
-                type="com.example.iaralopes.glico.core.FilterGlucoseViewModel"/>
+                type="com.example.iaralopes.glico.core.filterGlucose.FilterGlucoseViewModel"/>
     </data>
 
     <LinearLayout

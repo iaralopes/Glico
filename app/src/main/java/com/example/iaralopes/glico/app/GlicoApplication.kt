@@ -1,7 +1,9 @@
 package com.example.iaralopes.glico.app
 
 import android.app.Application
-import com.example.iaralopes.glico.app.DaggerApplicationComponent
+import com.example.iaralopes.glico.app.di.ApplicationComponent
+import com.example.iaralopes.glico.app.di.ApplicationModule
+import com.example.iaralopes.glico.app.di.DaggerApplicationComponent
 
 class GlicoApplication : Application() {
 

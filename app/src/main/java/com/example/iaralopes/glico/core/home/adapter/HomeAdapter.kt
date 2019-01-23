@@ -1,4 +1,4 @@
-package com.example.iaralopes.glico.core
+package com.example.iaralopes.glico.core.home.adapter
 
 import android.content.Context
 import android.os.Build
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import com.example.iaralopes.glico.R
-import com.example.iaralopes.glico.base.OnItemClickListener
-import com.example.iaralopes.glico.data.GlucoseEntity
+import com.example.iaralopes.glico.base.view.listeners.OnItemClickListener
+import com.example.iaralopes.glico.data.dataBase.GlucoseEntity
 import kotlinx.android.synthetic.main.item_historic.view.*
 
 class HomeAdapter(

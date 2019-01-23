@@ -1,4 +1,4 @@
-package com.example.iaralopes.glico.app
+package com.example.iaralopes.glico.app.di
 
 import android.content.Context
 import com.example.iaralopes.glico.utils.CoroutineContextProvider

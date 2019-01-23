@@ -1,4 +1,4 @@
-package com.example.iaralopes.glico.base
+package com.example.iaralopes.glico.base.view.listeners
 
 interface OnItemDialogFragmentClickListener {
 

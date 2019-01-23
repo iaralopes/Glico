@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import com.example.iaralopes.glico.R
-import com.example.iaralopes.glico.base.OnItemDialogFragmentClickListener
+import com.example.iaralopes.glico.base.view.listeners.OnItemDialogFragmentClickListener
 
 class SelectOptDialogFragment : androidx.fragment.app.DialogFragment() {
 

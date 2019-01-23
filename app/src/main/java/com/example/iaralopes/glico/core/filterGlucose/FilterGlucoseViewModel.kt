@@ -1,4 +1,4 @@
-package com.example.iaralopes.glico.core
+package com.example.iaralopes.glico.core.filterGlucose
 
 import androidx.lifecycle.ViewModel
 import javax.inject.Inject

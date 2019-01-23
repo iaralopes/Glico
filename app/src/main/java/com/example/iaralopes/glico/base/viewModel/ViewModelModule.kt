@@ -2,11 +2,9 @@ package com.example.iaralopes.glico.base.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.iaralopes.glico.base.viewModel.ViewModelFactory
-import com.example.iaralopes.glico.base.viewModel.ViewModelKey
-import com.example.iaralopes.glico.core.AddGlucoseViewModel
-import com.example.iaralopes.glico.core.FilterGlucoseViewModel
-import com.example.iaralopes.glico.core.HomeViewModel
+import com.example.iaralopes.glico.core.addGlucose.AddGlucoseViewModel
+import com.example.iaralopes.glico.core.filterGlucose.FilterGlucoseViewModel
+import com.example.iaralopes.glico.core.home.HomeViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

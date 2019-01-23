@@ -1,11 +1,11 @@
-package com.example.iaralopes.glico.core
+package com.example.iaralopes.glico.core.addGlucose
 
 import android.annotation.SuppressLint
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
-import com.example.iaralopes.glico.data.GlucoseEntity
+import com.example.iaralopes.glico.data.dataBase.GlucoseEntity
 import com.example.iaralopes.glico.utils.FlowState
 import java.text.SimpleDateFormat
 import java.util.*

@@ -1,11 +1,12 @@
-package com.example.iaralopes.glico.core
+package com.example.iaralopes.glico.core.filterGlucose
 
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.example.iaralopes.glico.R
 import com.example.iaralopes.glico.app.Constants.Extras.Companion.RESULT_FILTER_EXTRA_BUNDLE
-import com.example.iaralopes.glico.base.BaseActivity
+import com.example.iaralopes.glico.base.view.BaseActivity
+import com.example.iaralopes.glico.core.utils.GlucoseTypes
 import com.example.iaralopes.glico.databinding.ActivityFilterGlucoseBinding
 import com.example.iaralopes.glico.extension.viewModel
 import kotlinx.android.synthetic.main.partial_toolbar.*

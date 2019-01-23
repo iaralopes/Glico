@@ -8,7 +8,7 @@
     <data>
         <variable
                 name="viewModel"
-                type="com.example.iaralopes.glico.core.AddGlucoseViewModel"/>
+                type="com.example.iaralopes.glico.core.addGlucose.AddGlucoseViewModel"/>
     </data>
 
 
@@ -26,7 +26,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_marginTop="90dp"
-                tools:context=".core.AddGlucoseActivity">
+                tools:context=".core.addGlucose.AddGlucoseActivity">
 
 
             <androidx.cardview.widget.CardView

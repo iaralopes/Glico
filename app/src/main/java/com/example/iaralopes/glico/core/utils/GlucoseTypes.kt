@@ -1,4 +1,4 @@
-package com.example.iaralopes.glico.core
+package com.example.iaralopes.glico.core.utils
 
 enum class GlucoseTypes (val category: String) {
 

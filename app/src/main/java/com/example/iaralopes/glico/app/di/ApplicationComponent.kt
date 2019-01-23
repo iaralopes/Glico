@@ -1,9 +1,10 @@
-package com.example.iaralopes.glico.app
+package com.example.iaralopes.glico.app.di
 
-import com.example.iaralopes.glico.base.BaseActivity
+import com.example.iaralopes.glico.app.GlicoApplication
+import com.example.iaralopes.glico.base.view.BaseActivity
 import com.example.iaralopes.glico.base.viewModel.ViewModelModule
-import com.example.iaralopes.glico.data.GlicoDatabaseModule
-import com.example.iaralopes.glico.data.LocalRepositoryModule
+import com.example.iaralopes.glico.data.di.GlicoDatabaseModule
+import com.example.iaralopes.glico.data.di.LocalRepositoryModule
 import dagger.Component
 import javax.inject.Singleton
 

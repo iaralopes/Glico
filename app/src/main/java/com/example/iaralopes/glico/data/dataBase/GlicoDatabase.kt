@@ -1,4 +1,4 @@
-package com.example.iaralopes.glico.data
+package com.example.iaralopes.glico.data.dataBase
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

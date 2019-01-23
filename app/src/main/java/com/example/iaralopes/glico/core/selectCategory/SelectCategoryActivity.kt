@@ -1,10 +1,11 @@
-package com.example.iaralopes.glico.core
+package com.example.iaralopes.glico.core.selectCategory
 
 import android.os.Bundle
 import android.view.View
 import com.example.iaralopes.glico.R
 import com.example.iaralopes.glico.app.Constants.Extras.Companion.RESULT_SELECT_EXTRA_BUNDLE
-import com.example.iaralopes.glico.base.BaseActivity
+import com.example.iaralopes.glico.base.view.BaseActivity
+import com.example.iaralopes.glico.core.utils.GlucoseTypes
 import kotlinx.android.synthetic.main.partial_toolbar.*
 
 class SelectCategoryActivity : BaseActivity() {

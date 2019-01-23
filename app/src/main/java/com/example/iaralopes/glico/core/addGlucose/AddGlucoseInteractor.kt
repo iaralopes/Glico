@@ -1,9 +1,9 @@
-package com.example.iaralopes.glico.core
+package com.example.iaralopes.glico.core.addGlucose
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import com.example.iaralopes.glico.data.GlucoseEntity
-import com.example.iaralopes.glico.data.LocalRepository
+import com.example.iaralopes.glico.data.dataBase.GlucoseEntity
+import com.example.iaralopes.glico.data.repository.LocalRepository
 import com.example.iaralopes.glico.utils.CoroutineContextProvider
 import com.example.iaralopes.glico.utils.FlowState
 import kotlinx.coroutines.GlobalScope

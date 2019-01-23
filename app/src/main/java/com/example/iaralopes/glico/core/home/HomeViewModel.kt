@@ -1,10 +1,10 @@
-package com.example.iaralopes.glico.core
+package com.example.iaralopes.glico.core.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import com.example.iaralopes.glico.utils.FlowState
-import com.example.iaralopes.glico.data.GlucoseEntity
+import com.example.iaralopes.glico.data.dataBase.GlucoseEntity
 import javax.inject.Inject
 
 class HomeViewModel

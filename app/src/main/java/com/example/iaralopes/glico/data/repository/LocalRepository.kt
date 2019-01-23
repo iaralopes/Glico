@@ -1,6 +1,8 @@
-package com.example.iaralopes.glico.data
+package com.example.iaralopes.glico.data.repository
 
 import androidx.lifecycle.LiveData
+import com.example.iaralopes.glico.data.dataBase.GlucoseDao
+import com.example.iaralopes.glico.data.dataBase.GlucoseEntity
 import javax.inject.Inject
 
 class LocalRepository

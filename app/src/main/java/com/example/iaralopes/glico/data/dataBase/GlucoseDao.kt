@@ -1,4 +1,4 @@
-package com.example.iaralopes.glico.data
+package com.example.iaralopes.glico.data.dataBase
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
