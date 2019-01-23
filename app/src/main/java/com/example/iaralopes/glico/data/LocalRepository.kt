@@ -14,5 +14,9 @@ class LocalRepository
         glucoseDao.insert(glucoseEntity)
     }
 
+    fun deleteGlucose(glucoseEntity: GlucoseEntity) {
+        glucoseDao.delete(glucoseEntity)
+    }
+
 
 }

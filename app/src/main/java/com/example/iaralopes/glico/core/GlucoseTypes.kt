@@ -1,6 +1,6 @@
 package com.example.iaralopes.glico.core
 
-enum class FilterGlucoseTypes (val filter: String) {
+enum class GlucoseTypes (val category: String) {
 
     NENHUM("nenhum"),
     JEJUM("jejum"),

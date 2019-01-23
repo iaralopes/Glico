@@ -13,17 +13,22 @@ import com.example.iaralopes.glico.databinding.ActivityHomeBinding
 import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.startActivity
 import com.example.iaralopes.glico.base.BaseActivity
+import com.example.iaralopes.glico.base.OnItemClickListener
+import com.example.iaralopes.glico.base.OnItemDialogFragmentClickListener
 import com.example.iaralopes.glico.utils.FlowState
 import com.example.iaralopes.glico.extension.viewModel
+import com.example.iaralopes.glico.utils.SelectOptDialogFragment
 import kotlinx.android.synthetic.main.partial_toolbar.toolbar
 
-class HomeActivity : BaseActivity() {
+class HomeActivity : BaseActivity(), OnItemClickListener<GlucoseEntity>, OnItemDialogFragmentClickListener {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var homeAdapter: HomeAdapter
 
     private var originalGlucoseList = listOf<GlucoseEntity>()
+
+    private lateinit var glucoseToDelete: GlucoseEntity
 
     companion object {
         const val FILTER_REQUEST_CODE = 222
@@ -61,7 +66,7 @@ class HomeActivity : BaseActivity() {
 
                 originalGlucoseList = it
 
-                homeAdapter = HomeAdapter(it)
+                homeAdapter = HomeAdapter(it, this)
                 binding.recyclerView.adapter = homeAdapter
                 homeAdapter.notifyDataSetChanged()
 
@@ -97,38 +102,11 @@ class HomeActivity : BaseActivity() {
             var result = data?.getStringExtra(RESULT_FILTER_EXTRA_BUNDLE).toString()
             lateinit var sortGlucoseList: List<GlucoseEntity>
             when(result) {
-                FilterGlucoseTypes.NENHUM.filter -> {
+                GlucoseTypes.NENHUM.category -> {
                     sortGlucoseList = originalGlucoseList
                 }
-                FilterGlucoseTypes.JEJUM.filter -> {
-                    sortGlucoseList = originalGlucoseList.filter { it.category == FilterGlucoseTypes.JEJUM.filter}
-                }
-                FilterGlucoseTypes.POSCAFE.filter -> {
-                    sortGlucoseList = originalGlucoseList.filter { it.category == FilterGlucoseTypes.POSCAFE.filter}
-                }
-                FilterGlucoseTypes.ANTESALMOCO.filter -> {
-                    sortGlucoseList = originalGlucoseList.filter { it.category == FilterGlucoseTypes.ANTESALMOCO.filter}
-                }
-                FilterGlucoseTypes.POSALMOCO.filter -> {
-                    sortGlucoseList = originalGlucoseList.filter { it.category == FilterGlucoseTypes.POSALMOCO.filter}
-                }
-                FilterGlucoseTypes.ANTESLANCHE.filter -> {
-                    sortGlucoseList = originalGlucoseList.filter { it.category == FilterGlucoseTypes.ANTESLANCHE.filter}
-                }
-                FilterGlucoseTypes.POSLANCHE.filter -> {
-                    sortGlucoseList = originalGlucoseList.filter { it.category == FilterGlucoseTypes.POSLANCHE.filter}
-                }
-                FilterGlucoseTypes.ANTESJANTAR.filter -> {
-                    sortGlucoseList = originalGlucoseList.filter { it.category == FilterGlucoseTypes.ANTESJANTAR.filter}
-                }
-                FilterGlucoseTypes.POSJANTAR.filter -> {
-                    sortGlucoseList = originalGlucoseList.filter { it.category == FilterGlucoseTypes.POSJANTAR.filter}
-                }
-                FilterGlucoseTypes.ANTESDORMIR.filter -> {
-                    sortGlucoseList = originalGlucoseList.filter { it.category == FilterGlucoseTypes.ANTESDORMIR.filter}
-                }
-                FilterGlucoseTypes.MADRUGADA.filter -> {
-                    sortGlucoseList = originalGlucoseList.filter { it.category == FilterGlucoseTypes.MADRUGADA.filter}
+                else -> {
+                    sortGlucoseList = originalGlucoseList.filter { it.category == result}
                 }
             }
 
@@ -136,7 +114,28 @@ class HomeActivity : BaseActivity() {
             homeAdapter.notifyDataSetChanged()
 
         }
-
-
     }
+
+    override fun onItemClick(item: GlucoseEntity, position: Int) {
+        glucoseToDelete = item
+        showSelectOptionsDialog()
+    }
+
+    private fun showSelectOptionsDialog() {
+        var dialog = SelectOptDialogFragment()
+        val arg = Bundle()
+        arg.putString("textDialog", "Deseja apagar a glicemia selecionada?")
+        arg.putString("titleDialog", "Apagar glicemia")
+        dialog.arguments = arg
+        dialog.show(supportFragmentManager, "SelectOptDialog")
+    }
+
+    override fun onItemDialogClick(id: Int) {
+        when (id) {
+            R.id.btn_positive -> {
+                homeViewModel.deleteGlucose(glucoseToDelete)
+            }
+        }
+    }
+
 }

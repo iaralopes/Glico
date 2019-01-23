@@ -1,6 +1,5 @@
 package com.example.iaralopes.glico.core
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
@@ -27,67 +26,67 @@ class FilterGlucoseActivity : BaseActivity() {
     }
 
     fun onClickNenhum (view: View) {
-        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, FilterGlucoseTypes.NENHUM.filter)
+        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, GlucoseTypes.NENHUM.category)
         setResult(RESULT_OK, intent)
         finish()
     }
 
     fun onClickJejum (view: View) {
-        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, FilterGlucoseTypes.JEJUM.filter)
+        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, GlucoseTypes.JEJUM.category)
         setResult(RESULT_OK, intent)
         finish()
     }
 
     fun onClickPosCafe (view: View) {
-        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, FilterGlucoseTypes.POSCAFE.filter)
+        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, GlucoseTypes.POSCAFE.category)
         setResult(RESULT_OK, intent)
         finish()
     }
 
     fun onClickAntesAlmoco (view: View) {
-        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, FilterGlucoseTypes.ANTESALMOCO.filter)
+        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, GlucoseTypes.ANTESALMOCO.category)
         setResult(RESULT_OK, intent)
         finish()
     }
 
     fun onClickPosAlmoco (view: View) {
-        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, FilterGlucoseTypes.POSALMOCO.filter)
+        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, GlucoseTypes.POSALMOCO.category)
         setResult(RESULT_OK, intent)
         finish()
     }
 
     fun onClickAntesLanche (view: View) {
-        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, FilterGlucoseTypes.ANTESLANCHE.filter)
+        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, GlucoseTypes.ANTESLANCHE.category)
         setResult(RESULT_OK, intent)
         finish()
     }
 
     fun onClickPosLanche (view: View) {
-        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, FilterGlucoseTypes.POSLANCHE.filter)
+        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, GlucoseTypes.POSLANCHE.category)
         setResult(RESULT_OK, intent)
         finish()
     }
 
     fun onClickAntesJantar (view: View) {
-        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, FilterGlucoseTypes.ANTESJANTAR.filter)
+        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, GlucoseTypes.ANTESJANTAR.category)
         setResult(RESULT_OK, intent)
         finish()
     }
 
     fun onClickPosJantar (view: View) {
-        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, FilterGlucoseTypes.POSJANTAR.filter)
+        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, GlucoseTypes.POSJANTAR.category)
         setResult(RESULT_OK, intent)
         finish()
     }
 
     fun onClickAntesDormir (view: View) {
-        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, FilterGlucoseTypes.ANTESDORMIR.filter)
+        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, GlucoseTypes.ANTESDORMIR.category)
         setResult(RESULT_OK, intent)
         finish()
     }
 
     fun onClickMadrugada (view: View) {
-        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, FilterGlucoseTypes.MADRUGADA.filter)
+        intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, GlucoseTypes.MADRUGADA.category)
         setResult(RESULT_OK, intent)
         finish()
     }

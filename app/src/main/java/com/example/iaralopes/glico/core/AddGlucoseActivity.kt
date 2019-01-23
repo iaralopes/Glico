@@ -1,10 +1,12 @@
 package com.example.iaralopes.glico.core
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.iaralopes.glico.R
+import com.example.iaralopes.glico.app.Constants.Extras.Companion.RESULT_SELECT_EXTRA_BUNDLE
 import com.example.iaralopes.glico.base.BaseActivity
 import com.example.iaralopes.glico.databinding.ActivityAddGlucoseBinding
 import com.example.iaralopes.glico.extension.viewModel
@@ -16,6 +18,10 @@ class AddGlucoseActivity : BaseActivity() {
 
     private lateinit var binding: ActivityAddGlucoseBinding
     private lateinit var addGlucoseViewModel: AddGlucoseViewModel
+
+    companion object {
+        const val SELECT_REQUEST_CODE = 333
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,4 +55,22 @@ class AddGlucoseActivity : BaseActivity() {
     fun onClickAddGlucose(view: View) {
         addGlucoseViewModel.addGlucose()
     }
+
+    fun onClickSelectCategory(view: View) {
+        val intent = Intent(this, SelectCategoryActivity::class.java)
+        startActivityForResult(intent, SELECT_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == SELECT_REQUEST_CODE && resultCode == RESULT_OK) {
+            var result = data?.getStringExtra(RESULT_SELECT_EXTRA_BUNDLE).toString()
+
+            addGlucoseViewModel.setCategory(result)
+
+        }
+    }
+
+
 }

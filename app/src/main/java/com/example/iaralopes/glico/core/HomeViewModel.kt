@@ -20,4 +20,8 @@ class HomeViewModel
 
     fun glucoseList() : LiveData<FlowState<List<GlucoseEntity>>>
             = glucoseListState
+
+    fun deleteGlucose(glucoseEntity: GlucoseEntity){
+        homeInteractor.deleteGlucose(glucoseEntity)
+    }
 }

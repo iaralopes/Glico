@@ -17,7 +17,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
         <include
                 android:id="@+id/toolbar"
                 layout="@layout/partial_toolbar"/>
@@ -26,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="90dp"
                 tools:context=".core.AddGlucoseActivity">
 
 
@@ -58,67 +57,25 @@
                             android:paddingBottom="8dp"
                             android:id="@+id/questionCategory"/>
 
-                    <EditText
-                            android:layout_width="150dp"
+                    <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName"
                             android:layout_gravity="center"
                             android:textSize="16dp"
                             android:padding="10dp"
+                            android:textColor="@color/colorAccent"
                             android:layout_marginBottom="20dp"
                             android:textAlignment="center"
                             android:ems="10"
                             android:id="@+id/answerCategory"
-                            android:text="@={viewModel.resultCategory}"/>
+                            android:text="@={viewModel.resultCategory}"
+                            android:onClick="onClickSelectCategory"/>
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/cardViewDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="18dp"
-                    app:cardCornerRadius="7dp"
-                    app:cardElevation="1dp"
-            >
-
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:orientation="vertical">
-
-                    <TextView
-                            android:text="Qual foi a data do ocorrido?"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16dp"
-                            android:textAlignment="center"
-                            android:paddingTop="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingStart="10dp"
-                            android:paddingBottom="8dp"
-
-                            android:id="@+id/questionData"/>
-
-                    <EditText
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
-                            android:layout_gravity="center"
-                            android:textSize="16dp"
-                            android:layout_marginBottom="20dp"
-                            android:textAlignment="center"
-                            android:padding="10dp"
-                            android:ems="10"
-                            android:id="@+id/answerData"
-                            android:text="@={viewModel.resultData}"/>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                     android:id="@+id/cardViewGlucose"
@@ -151,8 +108,9 @@
                     <EditText
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
+                            android:inputType="number"
                             android:layout_gravity="center"
+                            android:textColor="@color/colorAccent"
                             android:textSize="16dp"
                             android:padding="10dp"
                             android:textAlignment="center"
@@ -180,4 +138,5 @@
 
         </LinearLayout>
     </LinearLayout>
+
 </layout>

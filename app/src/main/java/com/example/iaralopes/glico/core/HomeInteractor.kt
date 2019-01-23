@@ -40,4 +40,10 @@ class HomeInteractor
         return this.resultGetGlucoses
 
     }
+
+    fun deleteGlucose(glucoseEntity: GlucoseEntity) {
+        GlobalScope.launch(provider.IO) {
+            localRepository.deleteGlucose(glucoseEntity)
+        }
+    }
 }
