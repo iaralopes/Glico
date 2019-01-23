@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.iaralopes.glico.*
+import com.example.iaralopes.glico.app.Constants
 import com.example.iaralopes.glico.app.Constants.Extras.Companion.RESULT_FILTER_EXTRA_BUNDLE
 import com.example.iaralopes.glico.data.dataBase.GlucoseEntity
 import com.example.iaralopes.glico.databinding.ActivityHomeBinding
@@ -15,7 +16,7 @@ import org.jetbrains.anko.startActivity
 import com.example.iaralopes.glico.base.view.BaseActivity
 import com.example.iaralopes.glico.base.view.listeners.OnItemClickListener
 import com.example.iaralopes.glico.base.view.listeners.OnItemDialogFragmentClickListener
-import com.example.iaralopes.glico.core.filterGlucose.FilterGlucoseActivity
+import com.example.iaralopes.glico.core.selectCategory.SelectCategoryActivity
 import com.example.iaralopes.glico.core.addGlucose.AddGlucoseActivity
 import com.example.iaralopes.glico.core.home.adapter.HomeAdapter
 import com.example.iaralopes.glico.core.utils.GlucoseTypes
@@ -93,7 +94,8 @@ class HomeActivity : BaseActivity(), OnItemClickListener<GlucoseEntity>,
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         item?.let {
             if (it.itemId == R.id.action_item_menu) {
-                val intent = Intent(this, FilterGlucoseActivity::class.java)
+                val intent = Intent(this, SelectCategoryActivity::class.java)
+                intent.putExtra(Constants.Extras.OPTION_VISIBLE_EXTRA_BUNDLE, true)
                 startActivityForResult(intent,
                     FILTER_REQUEST_CODE
                 )

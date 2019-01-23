@@ -3,7 +3,7 @@ package com.example.iaralopes.glico.base.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.iaralopes.glico.core.addGlucose.AddGlucoseViewModel
-import com.example.iaralopes.glico.core.filterGlucose.FilterGlucoseViewModel
+import com.example.iaralopes.glico.core.selectCategory.SelectCategoryViewModel
 import com.example.iaralopes.glico.core.home.HomeViewModel
 import dagger.Binds
 import dagger.Module
@@ -27,8 +27,8 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(FilterGlucoseViewModel::class)
-    abstract fun bindsFilterGlucoseViewModel(filterGlucoseViewModel: FilterGlucoseViewModel): ViewModel
+    @ViewModelKey(SelectCategoryViewModel::class)
+    abstract fun bindsFilterGlucoseViewModel(filterGlucoseViewModel: SelectCategoryViewModel): ViewModel
 
 
 }

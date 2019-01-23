@@ -6,10 +6,11 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.iaralopes.glico.R
-import com.example.iaralopes.glico.app.Constants.Extras.Companion.RESULT_SELECT_EXTRA_BUNDLE
+import com.example.iaralopes.glico.app.Constants.Extras.Companion.OPTION_VISIBLE_EXTRA_BUNDLE
+import com.example.iaralopes.glico.app.Constants.Extras.Companion.RESULT_FILTER_EXTRA_BUNDLE
 import com.example.iaralopes.glico.base.view.BaseActivity
-import com.example.iaralopes.glico.core.home.HomeActivity
 import com.example.iaralopes.glico.core.selectCategory.SelectCategoryActivity
+import com.example.iaralopes.glico.core.home.HomeActivity
 import com.example.iaralopes.glico.databinding.ActivityAddGlucoseBinding
 import com.example.iaralopes.glico.extension.viewModel
 import com.example.iaralopes.glico.utils.FlowState
@@ -22,7 +23,7 @@ class AddGlucoseActivity : BaseActivity() {
     private lateinit var addGlucoseViewModel: AddGlucoseViewModel
 
     companion object {
-        const val SELECT_REQUEST_CODE = 333
+        const val FILTER_REQUEST_CODE = 222
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,17 +61,18 @@ class AddGlucoseActivity : BaseActivity() {
 
     fun onClickSelectCategory(view: View) {
         val intent = Intent(this, SelectCategoryActivity::class.java)
+        intent.putExtra(OPTION_VISIBLE_EXTRA_BUNDLE, false)
         startActivityForResult(
             intent,
-            SELECT_REQUEST_CODE
+            FILTER_REQUEST_CODE
         )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == SELECT_REQUEST_CODE && resultCode == RESULT_OK) {
-            val result = data?.getStringExtra(RESULT_SELECT_EXTRA_BUNDLE).toString()
+        if (requestCode == FILTER_REQUEST_CODE && resultCode == RESULT_OK) {
+            val result = data?.getStringExtra(RESULT_FILTER_EXTRA_BUNDLE).toString()
 
             addGlucoseViewModel.setCategory(result)
 

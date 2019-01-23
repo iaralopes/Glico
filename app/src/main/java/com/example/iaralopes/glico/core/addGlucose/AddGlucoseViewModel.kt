@@ -15,7 +15,6 @@ class AddGlucoseViewModel @Inject constructor(val addGlucoseInteractor: AddGluco
 
     private val addGlucoseState = MediatorLiveData<FlowState<Unit>>()
 
-
     val resultCategory = ObservableField<String>()
     val resultValue = ObservableField<String>()
 
@@ -28,7 +27,8 @@ class AddGlucoseViewModel @Inject constructor(val addGlucoseInteractor: AddGluco
     }
 
     fun addGlucose() {
-         addGlucoseState.addSource(
+        if (!resultValue.get().isNullOrEmpty()) {
+            addGlucoseState.addSource(
                 addGlucoseInteractor.addGlucose(
                     GlucoseEntity(
                         category = resultCategory.get().toString(),
@@ -37,6 +37,7 @@ class AddGlucoseViewModel @Inject constructor(val addGlucoseInteractor: AddGluco
                     )
                 )
             ) { addGlucoseState.value = (it) }
+        }
     }
 
     fun addGlucoseState(): LiveData<FlowState<Unit>> = addGlucoseState

@@ -6,6 +6,7 @@ class Constants {
         companion object {
             const val RESULT_FILTER_EXTRA_BUNDLE = "RESULT_FILTER_EXTRA_BUNDLE"
             const val RESULT_SELECT_EXTRA_BUNDLE = "RESULT_SELECT_EXTRA_BUNDLE"
+            const val OPTION_VISIBLE_EXTRA_BUNDLE = "OPTION_VISIBLE_EXTRA_BUNDLE"
         }
     }
 }
