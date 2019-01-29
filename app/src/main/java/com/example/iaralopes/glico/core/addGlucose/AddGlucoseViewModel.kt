@@ -27,7 +27,10 @@ class AddGlucoseViewModel @Inject constructor(val addGlucoseInteractor: AddGluco
     }
 
     fun addGlucose() {
-        if (!resultValue.get().isNullOrEmpty()) {
+        if (!resultValue.get().isNullOrEmpty() &&
+            resultValue.get()!!.length <= 3 &&
+            !resultCategory.get().equals("clique para selecionar")
+        ) {
             addGlucoseState.addSource(
                 addGlucoseInteractor.addGlucose(
                     GlucoseEntity(
