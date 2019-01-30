@@ -5,32 +5,34 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.example.iaralopes.glico.*
+import com.example.iaralopes.glico.R
 import com.example.iaralopes.glico.app.Constants
 import com.example.iaralopes.glico.app.Constants.Extras.Companion.RESULT_FILTER_EXTRA_BUNDLE
-import com.example.iaralopes.glico.data.dataBase.GlucoseEntity
-import com.example.iaralopes.glico.databinding.ActivityHomeBinding
-import kotlinx.android.synthetic.main.activity_home.*
-import org.jetbrains.anko.startActivity
 import com.example.iaralopes.glico.base.view.BaseActivity
-import com.example.iaralopes.glico.base.view.listeners.OnItemClickListener
 import com.example.iaralopes.glico.base.view.listeners.OnItemDialogFragmentClickListener
-import com.example.iaralopes.glico.core.selectCategory.SelectCategoryActivity
 import com.example.iaralopes.glico.core.addGlucose.AddGlucoseActivity
 import com.example.iaralopes.glico.core.home.adapter.HomeAdapter
+import com.example.iaralopes.glico.core.home.utils.OnClickState
+import com.example.iaralopes.glico.core.selectCategory.SelectCategoryActivity
 import com.example.iaralopes.glico.core.utils.GlucoseTypes
-import com.example.iaralopes.glico.utils.FlowState
+import com.example.iaralopes.glico.data.dataBase.GlucoseEntity
+import com.example.iaralopes.glico.databinding.ActivityHomeBinding
 import com.example.iaralopes.glico.extension.viewModel
+import com.example.iaralopes.glico.utils.FlowState
 import com.example.iaralopes.glico.utils.SelectOptDialogFragment
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.partial_toolbar.toolbar
+import org.jetbrains.anko.startActivity
 
-class HomeActivity : BaseActivity(), OnItemClickListener<GlucoseEntity>,
-    OnItemDialogFragmentClickListener {
+class HomeActivity : BaseActivity(), OnItemDialogFragmentClickListener {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var homeAdapter: HomeAdapter
+
+    private var onClickState = MutableLiveData<OnClickState<GlucoseEntity>>()
 
     private var originalGlucoseList = listOf<GlucoseEntity>()
 
@@ -48,6 +50,7 @@ class HomeActivity : BaseActivity(), OnItemClickListener<GlucoseEntity>,
         binding.viewModel = homeViewModel
 
         setObservableViewModel()
+        setObservableItemAdapterState()
         homeViewModel.getGlucoses()
 
         setUpHomeToolbar(toolbar, "Meu histórico")
@@ -61,10 +64,15 @@ class HomeActivity : BaseActivity(), OnItemClickListener<GlucoseEntity>,
 
     private fun setObservableViewModel() {
         homeViewModel.glucoseList().observe(this,
-            Observer { it?.let { handleState(it) } })
+            Observer { it?.let { handleGlucoseListState(it) } })
     }
 
-    private fun handleState(state: FlowState<List<GlucoseEntity>>) {
+    private fun setObservableItemAdapterState() {
+        onClickState.observe(this,
+            Observer { it?.let { handleItemAdapterState(it) } })
+    }
+
+    private fun handleGlucoseListState(state: FlowState<List<GlucoseEntity>>) {
         when (state.status) {
             FlowState.Status.LOADING -> {
             }
@@ -72,13 +80,22 @@ class HomeActivity : BaseActivity(), OnItemClickListener<GlucoseEntity>,
 
                 originalGlucoseList = it
 
-                homeAdapter = HomeAdapter(it, this)
+                homeAdapter = HomeAdapter(it, onClickState)
                 binding.recyclerView.adapter = homeAdapter
                 homeAdapter.notifyDataSetChanged()
 
             }
             FlowState.Status.ERROR -> {
 
+            }
+        }
+    }
+
+    private fun handleItemAdapterState(state: OnClickState<GlucoseEntity>) {
+        when (state.status) {
+            OnClickState.Status.DELETE -> state.data?.let {
+                glucoseToDelete = it
+                showSelectOptionsDialog()
             }
         }
     }
@@ -96,7 +113,8 @@ class HomeActivity : BaseActivity(), OnItemClickListener<GlucoseEntity>,
             if (it.itemId == R.id.action_item_menu) {
                 val intent = Intent(this, SelectCategoryActivity::class.java)
                 intent.putExtra(Constants.Extras.OPTION_VISIBLE_EXTRA_BUNDLE, true)
-                startActivityForResult(intent,
+                startActivityForResult(
+                    intent,
                     FILTER_REQUEST_CODE
                 )
             }
@@ -110,12 +128,12 @@ class HomeActivity : BaseActivity(), OnItemClickListener<GlucoseEntity>,
         if (requestCode == FILTER_REQUEST_CODE && resultCode == RESULT_OK) {
             var result = data?.getStringExtra(RESULT_FILTER_EXTRA_BUNDLE).toString()
             lateinit var sortGlucoseList: List<GlucoseEntity>
-            when(result) {
+            when (result) {
                 GlucoseTypes.NENHUM.category -> {
                     sortGlucoseList = originalGlucoseList
                 }
                 else -> {
-                    sortGlucoseList = originalGlucoseList.filter { it.category == result}
+                    sortGlucoseList = originalGlucoseList.filter { it.category == result }
                 }
             }
 
@@ -123,11 +141,6 @@ class HomeActivity : BaseActivity(), OnItemClickListener<GlucoseEntity>,
             homeAdapter.notifyDataSetChanged()
 
         }
-    }
-
-    override fun onItemClick(item: GlucoseEntity, position: Int) {
-        glucoseToDelete = item
-        showSelectOptionsDialog()
     }
 
     private fun showSelectOptionsDialog() {

@@ -6,14 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.MutableLiveData
 import com.example.iaralopes.glico.R
-import com.example.iaralopes.glico.base.view.listeners.OnItemClickListener
+import com.example.iaralopes.glico.core.home.utils.OnClickState
 import com.example.iaralopes.glico.data.dataBase.GlucoseEntity
 import kotlinx.android.synthetic.main.item_historic.view.*
 
 class HomeAdapter(
     var list: List<GlucoseEntity>,
-    val listener: OnItemClickListener<GlucoseEntity>
+    val onClickState: MutableLiveData<OnClickState<GlucoseEntity>>
 ) :
     androidx.recyclerview.widget.RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
@@ -39,12 +40,20 @@ class HomeAdapter(
 
         holder.historicColor.setBackgroundColor(getGlucoseColor(list[position].value.toInt()))
 
-        holder.onClickView { listener.onItemClick(list[position], position) }
+        holder.onClickDelete {
+            onClickState.postValue(
+                OnClickState(
+                    OnClickState.Status.DELETE,
+                    list[position],
+                    position
+                )
+            )
+        }
 
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
-    private fun getGlucoseColor(glucoseValue: Int) : Int {
+    private fun getGlucoseColor(glucoseValue: Int): Int {
         return if (glucoseValue <= 70 || glucoseValue >= 180) {
             context.getColor(R.color.colorAlertGlucose)
         } else {
@@ -59,8 +68,8 @@ class HomeAdapter(
         var historicValue = view.historic_value
         var historicColor = view.historic_color
 
-        fun onClickView(onItemClick : () -> Unit){
-            view.delete_glucose.setOnClickListener { onItemClick()  }
+        fun onClickDelete(onClick: () -> Unit) {
+            view.delete_glucose.setOnClickListener { onClick() }
         }
 
     }
