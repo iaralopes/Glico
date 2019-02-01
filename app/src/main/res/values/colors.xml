@@ -7,4 +7,7 @@
 
     <color name="colorAlertGlucose">#ee5c42</color>
     <color name="colorNormalGlucose">#4682b4</color>
+
+    <color name="colorLightGrey">#f6f5f1</color>
+
 </resources>

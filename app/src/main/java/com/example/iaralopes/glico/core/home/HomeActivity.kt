@@ -20,6 +20,7 @@ import com.example.iaralopes.glico.core.utils.GlucoseTypes
 import com.example.iaralopes.glico.data.dataBase.GlucoseEntity
 import com.example.iaralopes.glico.databinding.ActivityHomeBinding
 import com.example.iaralopes.glico.extension.viewModel
+import com.example.iaralopes.glico.utils.AccessDialogFragment
 import com.example.iaralopes.glico.utils.FlowState
 import com.example.iaralopes.glico.utils.SelectOptDialogFragment
 import kotlinx.android.synthetic.main.activity_home.*
@@ -51,7 +52,8 @@ class HomeActivity : BaseActivity(), OnItemDialogFragmentClickListener {
 
         setObservableViewModel()
         setObservableItemAdapterState()
-        homeViewModel.getGlucoses()
+
+        showAccessPasswordDialog()
 
         setUpHomeToolbar(toolbar, "Meu histórico")
 
@@ -143,6 +145,11 @@ class HomeActivity : BaseActivity(), OnItemDialogFragmentClickListener {
         }
     }
 
+    private fun showAccessPasswordDialog() {
+        var dialog = AccessDialogFragment()
+        dialog.show(supportFragmentManager, "AccessPasswordDialog")
+    }
+
     private fun showSelectOptionsDialog() {
         var dialog = SelectOptDialogFragment()
         val arg = Bundle()
@@ -156,6 +163,9 @@ class HomeActivity : BaseActivity(), OnItemDialogFragmentClickListener {
         when (id) {
             R.id.btn_positive -> {
                 homeViewModel.deleteGlucose(glucoseToDelete)
+            }
+            R.id.btn_enter -> {
+                homeViewModel.getGlucoses()
             }
         }
     }

@@ -59,9 +59,8 @@ class AddGlucoseViewModel @Inject constructor(val addGlucoseInteractor: AddGluco
     private fun hasGlucoseValue(): Boolean {
         var hasGlucoseValue = false
 
-        if (!resultValue.get().isNullOrEmpty()) {
-            hasGlucoseValue = true
-        } else {
+        if (!resultValue.get().isNullOrEmpty()) { hasGlucoseValue = true }
+        else {
             addGlucoseState.postValue(
                 FlowState(
                     FlowState.Status.ERROR, error =
