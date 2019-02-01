@@ -27,19 +27,42 @@ class AddGlucoseViewModel @Inject constructor(val addGlucoseInteractor: AddGluco
     }
 
     fun addGlucose() {
-        if (!resultValue.get().isNullOrEmpty() &&
-            resultValue.get()!!.length <= 3 &&
-            !resultCategory.get().equals("clique para selecionar")
-        ) {
-            addGlucoseState.addSource(
-                addGlucoseInteractor.addGlucose(
-                    GlucoseEntity(
-                        category = resultCategory.get().toString(),
-                        data = getTodayDate(),
-                        value = resultValue.get().toString()
-                    )
+        if (resultValue.get().isNullOrEmpty()) {
+            addGlucoseState.postValue(
+                FlowState(
+                    FlowState.Status.ERROR, error =
+                    Throwable("Você precisa inserir o valor da glicemia para registrar")
                 )
-            ) { addGlucoseState.value = (it) }
+            )
+        } else {
+            val valueIsNotNullOrEmpty = !resultValue.get().isNullOrEmpty()
+            val valueIsLessOrEqualThanThree = resultValue.get()!!.length <= 3
+            val categoryIsNotEqualThanDefault = !resultCategory.get().equals("clique para selecionar")
+
+            if (valueIsNotNullOrEmpty &&
+                valueIsLessOrEqualThanThree &&
+                categoryIsNotEqualThanDefault
+            ) {
+                addGlucoseState.addSource(
+                    addGlucoseInteractor.addGlucose(
+                        GlucoseEntity(
+                            category = resultCategory.get().toString(),
+                            data = getTodayDate(),
+                            value = resultValue.get().toString()
+                        )
+                    )
+                ) { addGlucoseState.value = (it) }
+            } else {
+                var errorMessage = "Confira se está tudo certo com os seus dados"
+
+                if (!valueIsLessOrEqualThanThree) {
+                    errorMessage = "Um valor de glicemia válido deve ter no máximo três algarismos"
+                } else if (!categoryIsNotEqualThanDefault) {
+                    errorMessage = "Vocẽ precisa selecionar uma categoria para registrar"
+                }
+
+                addGlucoseState.postValue(FlowState(FlowState.Status.ERROR, error = Throwable(errorMessage)))
+            }
         }
     }
 
@@ -51,4 +74,5 @@ class AddGlucoseViewModel @Inject constructor(val addGlucoseInteractor: AddGluco
 
         return dateFormat.format(Date())
     }
+
 }
