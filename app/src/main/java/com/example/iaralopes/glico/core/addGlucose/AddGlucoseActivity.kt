@@ -13,7 +13,9 @@ import com.example.iaralopes.glico.core.selectCategory.SelectCategoryActivity
 import com.example.iaralopes.glico.core.home.HomeActivity
 import com.example.iaralopes.glico.databinding.ActivityAddGlucoseBinding
 import com.example.iaralopes.glico.extension.viewModel
+import com.example.iaralopes.glico.utils.ErrorDialogFragment
 import com.example.iaralopes.glico.utils.FlowState
+import com.example.iaralopes.glico.utils.SelectOptDialogFragment
 import kotlinx.android.synthetic.main.partial_toolbar.*
 import org.jetbrains.anko.startActivity
 
@@ -51,8 +53,18 @@ class AddGlucoseActivity : BaseActivity() {
                 startActivity<HomeActivity>()
             }
             FlowState.Status.ERROR -> {
+                showErrorDialog(state.error?.message!!)
             }
         }
+    }
+
+    private fun showErrorDialog(errorMessage: String) {
+        var dialog = ErrorDialogFragment()
+        val arg = Bundle()
+        arg.putString("textDialog", errorMessage)
+        arg.putString("titleDialog", "Erro")
+        dialog.arguments = arg
+        dialog.show(supportFragmentManager, "SelectOptDialog")
     }
 
     fun onClickAddGlucose(view: View) {
