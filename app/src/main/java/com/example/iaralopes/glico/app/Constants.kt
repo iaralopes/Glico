@@ -9,4 +9,10 @@ class Constants {
             const val OPTION_VISIBLE_EXTRA_BUNDLE = "OPTION_VISIBLE_EXTRA_BUNDLE"
         }
     }
+
+    class SharedPreferences {
+        companion object {
+            val USER_ID = "user_id"
+        }
+    }
 }

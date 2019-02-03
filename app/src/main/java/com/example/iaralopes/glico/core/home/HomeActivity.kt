@@ -53,7 +53,8 @@ class HomeActivity : BaseActivity(), OnItemDialogFragmentClickListener {
         setObservableViewModel()
         setObservableItemAdapterState()
 
-        showAccessPasswordDialog()
+//        showAccessPasswordDialog()
+        homeViewModel.getGlucoses()
 
         setUpHomeToolbar(toolbar, "Meu histórico")
 

@@ -7,6 +7,14 @@ class RemoteRepository @Inject constructor(
     private val glicoService: GlicoService,
     private val networkStatus: NetworkStatus
 ) {
+
+    suspend fun login(loginBody: Login): Result<User> {
+        return safeApiCall(
+            {networkStatus.isOnline()},
+            {glicoService.login(loginBody).await() }
+        )
+    }
+
     suspend fun getGlucoses(): Result<List<Glucose>> {
         return safeApiCall(
             {networkStatus.isOnline()},

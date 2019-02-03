@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".core.login.LoginActivity">
+
+    <data>
+        <variable
+                name="viewModel"
+                type="com.example.iaralopes.glico.core.login.LoginViewModel"/>
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="24dp">
+
+        <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:text="Seja bem vindo(a)!"
+                android:textSize="18dp"
+                android:textStyle="bold"/>
+
+        <TextView
+                android:id="@+id/txt_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Que tal inaugurar o seu histórico de glicemias?"
+                android:layout_marginTop="11dp"
+                android:textSize="15sp"/>
+
+        <EditText
+                android:id="@+id/edit_username"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginEnd="11dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorLightGrey"
+                android:ems="10"
+                android:textSize="15sp"
+                android:hint="username"
+                android:paddingStart="11dp"
+                android:text="@={viewModel.resultUsername}"/>
+
+
+        <EditText
+                android:id="@+id/edit_password"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginEnd="11dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorLightGrey"
+                android:ems="10"
+                android:textSize="15sp"
+                android:inputType="textPassword"
+                android:hint="senha"
+                android:paddingStart="11dp"
+                android:text="@={viewModel.resultPassword}"
+        />
+        <Button
+                android:id="@+id/btn_enter"
+                android:layout_width="200dp"
+                android:layout_height="38dp"
+                android:text="ENTRAR"
+                android:textColor="@color/colorWhite"
+                android:layout_marginTop="20dp"
+                android:textAllCaps="false"
+                android:background="@color/colorPrimary"
+                android:onClick="onClickLogin"/>
+
+    </LinearLayout>
+</layout>

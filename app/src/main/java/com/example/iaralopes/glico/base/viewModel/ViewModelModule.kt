@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.iaralopes.glico.core.addGlucose.AddGlucoseViewModel
 import com.example.iaralopes.glico.core.selectCategory.SelectCategoryViewModel
 import com.example.iaralopes.glico.core.home.HomeViewModel
+import com.example.iaralopes.glico.core.login.LoginViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -29,6 +30,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SelectCategoryViewModel::class)
     abstract fun bindsFilterGlucoseViewModel(filterGlucoseViewModel: SelectCategoryViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    abstract fun bindsLoginViewModel(loginViewModel: LoginViewModel): ViewModel
 
 
 }

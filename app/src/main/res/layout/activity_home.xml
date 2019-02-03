@@ -33,7 +33,6 @@
                     android:layout_height="match_parent"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:paddingBottom="17dp"/>
-
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

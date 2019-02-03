@@ -63,4 +63,5 @@ class HomeInteractor
             localRepository.deleteGlucose(glucoseEntity)
         }
     }
+
 }
