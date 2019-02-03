@@ -15,17 +15,17 @@ import kotlinx.android.synthetic.main.partial_toolbar.*
 class SelectCategoryActivity : BaseActivity() {
 
     private lateinit var binding: ActivitySelectCategoryBinding
-    private lateinit var filterGlucoseViewModel: SelectCategoryViewModel
+    private lateinit var selectGlucoseViewModel: SelectCategoryViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        filterGlucoseViewModel = viewModel(viewModelFactory)
+        selectGlucoseViewModel = viewModel(viewModelFactory)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_category)
-        binding.viewModel = filterGlucoseViewModel
+        binding.viewModel = selectGlucoseViewModel
 
         val optionIsVisible = intent.getBooleanExtra(OPTION_VISIBLE_EXTRA_BUNDLE, true)
-        filterGlucoseViewModel.setOptionIsVisible(optionIsVisible)
+        selectGlucoseViewModel.setOptionIsVisible(optionIsVisible)
 
         setUpToolbar(toolbar, "Selecionar categoria")
     }
@@ -94,5 +94,9 @@ class SelectCategoryActivity : BaseActivity() {
         intent.putExtra(RESULT_FILTER_EXTRA_BUNDLE, GlucoseTypes.MADRUGADA.category)
         setResult(RESULT_OK, intent)
         finish()
+    }
+
+    fun onClickBackup(view: View) {
+        selectGlucoseViewModel.backup()
     }
 }

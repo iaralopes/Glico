@@ -14,6 +14,10 @@ class LocalRepository
         return glucoseDao.getAllGlucoses()
     }
 
+    fun getAllGlucosesToBackup(): List<GlucoseEntity> {
+        return glucoseDao.getAllGlucosesToBackup()
+    }
+
     fun saveGlucose(glucoseEntity: GlucoseEntity) {
         glucoseDao.insert(glucoseEntity)
     }

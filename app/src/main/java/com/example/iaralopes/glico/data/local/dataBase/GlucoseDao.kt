@@ -14,4 +14,8 @@ abstract class GlucoseDao: BaseDao<GlucoseEntity> {
 
     @Query("SELECT * FROM glucose ORDER BY id DESC")
     abstract fun getAllGlucoses() : LiveData<List<GlucoseEntity>>
+
+    @Query("SELECT * FROM glucose ORDER BY id DESC")
+    abstract fun getAllGlucosesToBackup() : List<GlucoseEntity>
+
 }

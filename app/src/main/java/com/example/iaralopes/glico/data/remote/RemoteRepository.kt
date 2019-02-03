@@ -1,6 +1,7 @@
 package com.example.iaralopes.glico.data.remote
 
 import com.example.iaralopes.glico.extension.safeApiCall
+import okhttp3.ResponseBody
 import javax.inject.Inject
 
 class RemoteRepository @Inject constructor(
@@ -19,6 +20,13 @@ class RemoteRepository @Inject constructor(
         return safeApiCall(
             {networkStatus.isOnline()},
             { glicoService.getGlucoses().await() }
+        )
+    }
+
+    suspend fun postGlucose(glucose: Glucose): Result<ResponseBody>{
+        return safeApiCall(
+            {networkStatus.isOnline()},
+            { glicoService.postGlucose(glucose).await() }
         )
     }
 

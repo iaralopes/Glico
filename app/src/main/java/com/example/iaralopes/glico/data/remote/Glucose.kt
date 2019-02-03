@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 class Glucose (
     @SerializedName("id")
     @Expose
-    var id: Long,
+    var id: Long? = 0,
     @SerializedName("date")
     @Expose
     var date: String,
