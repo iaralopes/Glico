@@ -9,7 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import com.example.iaralopes.glico.R
 import com.example.iaralopes.glico.core.home.utils.OnClickState
-import com.example.iaralopes.glico.data.dataBase.GlucoseEntity
+import com.example.iaralopes.glico.data.local.dataBase.GlucoseEntity
 import kotlinx.android.synthetic.main.item_historic.view.*
 
 class HomeAdapter(

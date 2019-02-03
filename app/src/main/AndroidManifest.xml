@@ -3,6 +3,8 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.example.iaralopes.glico">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
             android:name=".app.GlicoApplication"
             android:allowBackup="true"
@@ -12,8 +14,6 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".core.LoginActivity">
-        </activity>
         <activity android:name=".core.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -22,8 +22,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".core.addGlucose.AddGlucoseActivity">
-        </activity>
-        <activity android:name=".core.selectCategory.SelectCategoryActivity">
         </activity>
         <activity android:name=".core.selectCategory.SelectCategoryActivity">
         </activity>

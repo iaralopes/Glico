@@ -17,7 +17,7 @@ import com.example.iaralopes.glico.core.home.adapter.HomeAdapter
 import com.example.iaralopes.glico.core.home.utils.OnClickState
 import com.example.iaralopes.glico.core.selectCategory.SelectCategoryActivity
 import com.example.iaralopes.glico.core.utils.GlucoseTypes
-import com.example.iaralopes.glico.data.dataBase.GlucoseEntity
+import com.example.iaralopes.glico.data.local.dataBase.GlucoseEntity
 import com.example.iaralopes.glico.databinding.ActivityHomeBinding
 import com.example.iaralopes.glico.extension.viewModel
 import com.example.iaralopes.glico.utils.AccessDialogFragment
