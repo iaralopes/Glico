@@ -6,3 +6,6 @@ Aplicativo desenvolvido em Kotlin, com a utilização do padrão arquitetural MV
 * Visualizar histórico de glicemias
 * Filtrar histórico de glicemias de acordo com categorias
 * Inserir glicemia informando a categoria a qual pertence e seu valor
+
+## RESTful API ##
+API desenvolvida em ASP.NET Core 2.2: https://github.com/iaralopes/glicoapi
