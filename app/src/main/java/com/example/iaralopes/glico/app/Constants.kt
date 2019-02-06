@@ -10,6 +10,12 @@ class Constants {
         }
     }
 
+    class FragmentArgs {
+        companion object {
+            const val GLUCOSE_FILTER_ARGS = "GLUCOSE_FILTER_ARGS"
+        }
+    }
+
     class SharedPreferences {
         companion object {
             val USER_ID = "user_id"

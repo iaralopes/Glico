@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.iaralopes.glico.R
 import com.example.iaralopes.glico.app.Constants.Extras.Companion.RESULT_FILTER_EXTRA_BUNDLE
+import com.example.iaralopes.glico.app.Constants.FragmentArgs.Companion.GLUCOSE_FILTER_ARGS
 import com.example.iaralopes.glico.base.view.BaseFragment
 import com.example.iaralopes.glico.base.view.listeners.OnItemDialogFragmentClickListener
 import com.example.iaralopes.glico.core.home.adapter.HomeAdapter
@@ -30,12 +31,18 @@ class HomeFragment : BaseFragment(), OnItemDialogFragmentClickListener {
 
     private var onClickState = MutableLiveData<OnClickState<GlucoseEntity>>()
 
-    private var originalGlucoseList = listOf<GlucoseEntity>()
-
     private lateinit var glucoseToDelete: GlucoseEntity
 
     companion object {
         const val FILTER_REQUEST_CODE = 222
+
+        fun newInstance(glucosesFilter: String): HomeFragment {
+            val fragment = HomeFragment()
+            val args = Bundle()
+            args.putString(GLUCOSE_FILTER_ARGS, glucosesFilter)
+            fragment.arguments = args
+            return fragment
+        }
     }
 
     override fun onCreateView(
@@ -72,9 +79,9 @@ class HomeFragment : BaseFragment(), OnItemDialogFragmentClickListener {
             }
             FlowState.Status.SUCCESS -> state.data?.let {
 
-                originalGlucoseList = it
+                val filteredGlucoseList = filterGlucoses(it)
 
-                homeAdapter = HomeAdapter(it, onClickState)
+                homeAdapter = HomeAdapter(filteredGlucoseList, onClickState)
                 binding.recyclerView.adapter = homeAdapter
                 homeAdapter.notifyDataSetChanged()
 
@@ -85,55 +92,29 @@ class HomeFragment : BaseFragment(), OnItemDialogFragmentClickListener {
         }
     }
 
+    private fun filterGlucoses(originalGlucoseList: List<GlucoseEntity>): List<GlucoseEntity> {
+        val filterType = arguments?.getString(GLUCOSE_FILTER_ARGS)
+        lateinit var filteredGlucoseList: List<GlucoseEntity>
+
+        when (filterType) {
+            GlucoseTypes.NENHUM.category -> {
+                filteredGlucoseList = originalGlucoseList
+            }
+            else -> {
+                filteredGlucoseList = originalGlucoseList.filter { it.category == filterType }
+            }
+        }
+
+        return filteredGlucoseList
+
+    }
+
     private fun handleItemAdapterState(state: OnClickState<GlucoseEntity>) {
         when (state.status) {
             OnClickState.Status.DELETE -> state.data?.let {
                 glucoseToDelete = it
                 showSelectOptionsDialog()
             }
-        }
-    }
-
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.glico_menu, menu)
-//        val searchMenuItem = menu?.findItem(R.id.action_item_menu)
-//        searchMenuItem?.icon = getDrawable(R.drawable.ic_filter)
-//
-//        return true
-//    }
-
-//    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-//        item?.let {
-//            if (it.itemId == R.id.action_item_menu) {
-//                val intent = Intent(this, SelectCategoryActivity::class.java)
-//                intent.putExtra(Constants.Extras.OPTION_VISIBLE_EXTRA_BUNDLE, true)
-//                startActivityForResult(
-//                    intent,
-//                    FILTER_REQUEST_CODE
-//                )
-//            }
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == FILTER_REQUEST_CODE && resultCode == RESULT_OK) {
-            var result = data?.getStringExtra(RESULT_FILTER_EXTRA_BUNDLE).toString()
-            lateinit var sortGlucoseList: List<GlucoseEntity>
-            when (result) {
-                GlucoseTypes.NENHUM.category -> {
-                    sortGlucoseList = originalGlucoseList
-                }
-                else -> {
-                    sortGlucoseList = originalGlucoseList.filter { it.category == result }
-                }
-            }
-
-            homeAdapter.list = sortGlucoseList
-            homeAdapter.notifyDataSetChanged()
-
         }
     }
 

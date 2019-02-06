@@ -3,38 +3,15 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group>
         <item
-                android:id="@+id/nav_camera"
-                android:icon="@drawable/ic_filter"
-                android:title="Filtrar histórico"/>
-        <item
-                android:id="@+id/nav_gallery"
+                android:id="@+id/nav_backup"
                 android:icon="@drawable/ic_backup"
-                android:title="Realizer backup"/>
-        <!--<item-->
-                <!--android:id="@+id/nav_slideshow"-->
-                <!--android:icon="@drawable/ic_menu_slideshow"-->
-                <!--android:title="Slideshow"/>-->
-        <!--<item-->
-                <!--android:id="@+id/nav_manage"-->
-                <!--android:icon="@drawable/ic_menu_manage"-->
-                <!--android:title="Tools"/>-->
-
+                android:title="Realizar backup"/>
         <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_exit"
                 android:title="Sair"/>
     </group>
-
-    <!--<item>-->
-        <!--<menu>-->
-            <!--&lt;!&ndash;<item&ndash;&gt;-->
-                    <!--&lt;!&ndash;android:id="@+id/nav_share"&ndash;&gt;-->
-                    <!--&lt;!&ndash;android:icon="@drawable/ic_person"&ndash;&gt;-->
-                    <!--&lt;!&ndash;android:title="Editar perfil"/>&ndash;&gt;-->
-
-        <!--</menu>-->
-    <!--</item>-->
 
 </menu>

@@ -49,6 +49,7 @@ class AddGlucoseActivity : BaseActivity() {
             FlowState.Status.LOADING -> {
             }
             FlowState.Status.SUCCESS -> {
+                setResult(RESULT_OK, intent)
                 finish()
             }
             FlowState.Status.ERROR -> {
