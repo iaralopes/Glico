@@ -1,7 +1,5 @@
 package com.example.iaralopes.glico.core.home
 
-import android.app.Activity.RESULT_OK
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.iaralopes.glico.R
-import com.example.iaralopes.glico.app.Constants.Extras.Companion.RESULT_FILTER_EXTRA_BUNDLE
 import com.example.iaralopes.glico.app.Constants.FragmentArgs.Companion.GLUCOSE_FILTER_ARGS
 import com.example.iaralopes.glico.base.view.BaseFragment
 import com.example.iaralopes.glico.base.view.listeners.OnItemDialogFragmentClickListener
@@ -34,8 +31,6 @@ class HomeFragment : BaseFragment(), OnItemDialogFragmentClickListener {
     private lateinit var glucoseToDelete: GlucoseEntity
 
     companion object {
-        const val FILTER_REQUEST_CODE = 222
-
         fun newInstance(glucosesFilter: String): HomeFragment {
             val fragment = HomeFragment()
             val args = Bundle()

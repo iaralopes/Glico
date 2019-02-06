@@ -8,7 +8,6 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.example.iaralopes.glico.R
-import com.example.iaralopes.glico.app.Constants
 import com.example.iaralopes.glico.app.Constants.Extras.Companion.OPTION_VISIBLE_EXTRA_BUNDLE
 import com.example.iaralopes.glico.app.Constants.Extras.Companion.RESULT_FILTER_EXTRA_BUNDLE
 import com.example.iaralopes.glico.base.view.BaseActivity
@@ -16,11 +15,9 @@ import com.example.iaralopes.glico.core.addGlucose.AddGlucoseActivity
 import com.example.iaralopes.glico.core.home.HomeFragment
 import com.example.iaralopes.glico.core.selectCategory.SelectCategoryActivity
 import com.example.iaralopes.glico.core.utils.GlucoseTypes
-import com.example.iaralopes.glico.data.local.dataBase.GlucoseEntity
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import org.jetbrains.anko.startActivity
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -51,7 +48,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         nav_view.setNavigationItemSelectedListener(this)
 
         openHomeFragment(GlucoseTypes.NENHUM.category)
-
     }
 
     override fun onBackPressed() {
@@ -71,7 +67,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        item?.let {
+        item.let {
             if (it.itemId == R.id.action_item_menu) {
                 val intent = Intent(this, SelectCategoryActivity::class.java)
                 intent.putExtra(OPTION_VISIBLE_EXTRA_BUNDLE, true)
@@ -102,8 +98,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == FILTER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            var result = data?.getStringExtra(RESULT_FILTER_EXTRA_BUNDLE).toString()
-
+            val result = data?.getStringExtra(RESULT_FILTER_EXTRA_BUNDLE).toString()
             openHomeFragment(result)
         }
 
