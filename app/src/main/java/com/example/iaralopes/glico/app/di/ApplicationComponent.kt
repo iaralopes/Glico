@@ -2,6 +2,7 @@ package com.example.iaralopes.glico.app.di
 
 import com.example.iaralopes.glico.app.GlicoApplication
 import com.example.iaralopes.glico.base.view.BaseActivity
+import com.example.iaralopes.glico.base.view.BaseFragment
 import com.example.iaralopes.glico.base.viewModel.ViewModelModule
 import com.example.iaralopes.glico.data.local.di.GlicoDatabaseModule
 import com.example.iaralopes.glico.data.local.di.LocalRepositoryModule
@@ -26,4 +27,5 @@ interface ApplicationComponent {
 
     fun inject(application: GlicoApplication)
     fun inject(baseActivity: BaseActivity)
+    fun inject(baseFragment: BaseFragment)
 }

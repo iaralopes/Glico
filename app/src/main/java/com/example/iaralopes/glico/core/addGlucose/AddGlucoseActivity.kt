@@ -10,12 +10,11 @@ import com.example.iaralopes.glico.app.Constants.Extras.Companion.OPTION_VISIBLE
 import com.example.iaralopes.glico.app.Constants.Extras.Companion.RESULT_FILTER_EXTRA_BUNDLE
 import com.example.iaralopes.glico.base.view.BaseActivity
 import com.example.iaralopes.glico.core.selectCategory.SelectCategoryActivity
-import com.example.iaralopes.glico.core.home.HomeActivity
+import com.example.iaralopes.glico.core.home.HomeFragment
 import com.example.iaralopes.glico.databinding.ActivityAddGlucoseBinding
 import com.example.iaralopes.glico.extension.viewModel
 import com.example.iaralopes.glico.utils.ErrorDialogFragment
 import com.example.iaralopes.glico.utils.FlowState
-import com.example.iaralopes.glico.utils.SelectOptDialogFragment
 import kotlinx.android.synthetic.main.partial_toolbar.*
 import org.jetbrains.anko.startActivity
 
@@ -50,7 +49,7 @@ class AddGlucoseActivity : BaseActivity() {
             FlowState.Status.LOADING -> {
             }
             FlowState.Status.SUCCESS -> {
-                startActivity<HomeActivity>()
+                finish()
             }
             FlowState.Status.ERROR -> {
                 showErrorDialog(state.error?.message!!)

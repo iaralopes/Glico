@@ -35,7 +35,7 @@ class SelectOptDialogFragment : androidx.fragment.app.DialogFragment() {
 
 
         positiveButton?.setOnClickListener {
-            (activity as(OnItemDialogFragmentClickListener))
+            (targetFragment as(OnItemDialogFragmentClickListener))
                 .onItemDialogClick(R.id.btn_positive)
             dismiss()
         }

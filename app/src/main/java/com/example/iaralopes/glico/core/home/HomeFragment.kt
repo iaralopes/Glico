@@ -1,35 +1,30 @@
 package com.example.iaralopes.glico.core.home
 
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.iaralopes.glico.R
-import com.example.iaralopes.glico.app.Constants
 import com.example.iaralopes.glico.app.Constants.Extras.Companion.RESULT_FILTER_EXTRA_BUNDLE
-import com.example.iaralopes.glico.base.view.BaseActivity
+import com.example.iaralopes.glico.base.view.BaseFragment
 import com.example.iaralopes.glico.base.view.listeners.OnItemDialogFragmentClickListener
-import com.example.iaralopes.glico.core.addGlucose.AddGlucoseActivity
 import com.example.iaralopes.glico.core.home.adapter.HomeAdapter
 import com.example.iaralopes.glico.core.home.utils.OnClickState
-import com.example.iaralopes.glico.core.selectCategory.SelectCategoryActivity
 import com.example.iaralopes.glico.core.utils.GlucoseTypes
 import com.example.iaralopes.glico.data.local.dataBase.GlucoseEntity
-import com.example.iaralopes.glico.databinding.ActivityHomeBinding
+import com.example.iaralopes.glico.databinding.FragmentHomeBinding
 import com.example.iaralopes.glico.extension.viewModel
-import com.example.iaralopes.glico.utils.AccessDialogFragment
 import com.example.iaralopes.glico.utils.FlowState
 import com.example.iaralopes.glico.utils.SelectOptDialogFragment
-import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.partial_toolbar.toolbar
-import org.jetbrains.anko.startActivity
 
-class HomeActivity : BaseActivity(), OnItemDialogFragmentClickListener {
+class HomeFragment : BaseFragment(), OnItemDialogFragmentClickListener {
 
-    private lateinit var binding: ActivityHomeBinding
+    private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var homeAdapter: HomeAdapter
 
@@ -43,26 +38,22 @@ class HomeActivity : BaseActivity(), OnItemDialogFragmentClickListener {
         const val FILTER_REQUEST_CODE = 222
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         homeViewModel = viewModel(viewModelFactory)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         binding.viewModel = homeViewModel
 
         setObservableViewModel()
         setObservableItemAdapterState()
 
-//        showAccessPasswordDialog()
         homeViewModel.getGlucoses()
 
-        setUpHomeToolbar(toolbar, "Meu histórico")
 
-
-        fab.setOnClickListener { view ->
-            startActivity<AddGlucoseActivity>()
-        }
-
+        return binding.root
     }
 
     private fun setObservableViewModel() {
@@ -103,27 +94,27 @@ class HomeActivity : BaseActivity(), OnItemDialogFragmentClickListener {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.glico_menu, menu)
-        val searchMenuItem = menu?.findItem(R.id.action_item_menu)
-        searchMenuItem?.icon = getDrawable(R.drawable.ic_filter)
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.glico_menu, menu)
+//        val searchMenuItem = menu?.findItem(R.id.action_item_menu)
+//        searchMenuItem?.icon = getDrawable(R.drawable.ic_filter)
+//
+//        return true
+//    }
 
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        item?.let {
-            if (it.itemId == R.id.action_item_menu) {
-                val intent = Intent(this, SelectCategoryActivity::class.java)
-                intent.putExtra(Constants.Extras.OPTION_VISIBLE_EXTRA_BUNDLE, true)
-                startActivityForResult(
-                    intent,
-                    FILTER_REQUEST_CODE
-                )
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
+//    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+//        item?.let {
+//            if (it.itemId == R.id.action_item_menu) {
+//                val intent = Intent(this, SelectCategoryActivity::class.java)
+//                intent.putExtra(Constants.Extras.OPTION_VISIBLE_EXTRA_BUNDLE, true)
+//                startActivityForResult(
+//                    intent,
+//                    FILTER_REQUEST_CODE
+//                )
+//            }
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -146,18 +137,14 @@ class HomeActivity : BaseActivity(), OnItemDialogFragmentClickListener {
         }
     }
 
-    private fun showAccessPasswordDialog() {
-        var dialog = AccessDialogFragment()
-        dialog.show(supportFragmentManager, "AccessPasswordDialog")
-    }
-
     private fun showSelectOptionsDialog() {
         var dialog = SelectOptDialogFragment()
         val arg = Bundle()
         arg.putString("textDialog", "Deseja apagar a glicemia selecionada?")
         arg.putString("titleDialog", "Apagar glicemia")
         dialog.arguments = arg
-        dialog.show(supportFragmentManager, "SelectOptDialog")
+        dialog.setTargetFragment(this, 0)
+        dialog.show(activity!!.supportFragmentManager, "SelectOptDialog")
     }
 
     override fun onItemDialogClick(id: Int) {

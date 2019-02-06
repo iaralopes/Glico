@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.iaralopes.glico.R
 import com.example.iaralopes.glico.base.view.BaseActivity
-import com.example.iaralopes.glico.core.home.HomeActivity
+import com.example.iaralopes.glico.core.MainActivity
 import com.example.iaralopes.glico.data.remote.User
 import com.example.iaralopes.glico.databinding.ActivityLoginBinding
 import com.example.iaralopes.glico.extension.viewModel
@@ -28,7 +28,7 @@ class LoginActivity : BaseActivity() {
         binding.viewModel = loginViewModel
 
         setObservableViewModel()
-        startActivity<HomeActivity>()
+        startActivity<MainActivity>()
     }
 
     private fun setObservableViewModel() {
@@ -42,7 +42,7 @@ class LoginActivity : BaseActivity() {
 
             }
             FlowState.Status.SUCCESS -> {
-                startActivity<HomeActivity>()
+//                startActivity<HomeFragment>()
             }
             FlowState.Status.ERROR -> {
 
