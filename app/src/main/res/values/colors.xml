@@ -9,5 +9,7 @@
     <color name="colorNormalGlucose">#4682b4</color>
 
     <color name="colorLightGrey">#f6f5f1</color>
+    <color name="colorGrey">#E2E2E2</color>
+
 
 </resources>

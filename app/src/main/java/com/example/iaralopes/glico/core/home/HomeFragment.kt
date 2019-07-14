@@ -75,6 +75,7 @@ class HomeFragment : BaseFragment(), OnItemDialogFragmentClickListener {
             FlowState.Status.SUCCESS -> state.data?.let {
 
                 val filteredGlucoseList = filterGlucoses(it)
+                homeViewModel.setGlucosesAverage(filteredGlucoseList)
 
                 homeAdapter = HomeAdapter(filteredGlucoseList, onClickState)
                 binding.recyclerView.adapter = homeAdapter
@@ -101,7 +102,6 @@ class HomeFragment : BaseFragment(), OnItemDialogFragmentClickListener {
         }
 
         return filteredGlucoseList
-
     }
 
     private fun handleItemAdapterState(state: OnClickState<GlucoseEntity>) {

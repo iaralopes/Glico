@@ -12,41 +12,75 @@
                 type="com.example.iaralopes.glico.core.home.HomeViewModel"/>
     </data>
 
-    <!--<androidx.coordinatorlayout.widget.CoordinatorLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-    <!--&gt;-->
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="60dp"
+    >
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="18dp"
+                android:visibility="@{viewModel.averageVisibility}"
+                app:cardCornerRadius="7dp"
+                app:cardElevation="1dp"
         >
 
-            <!--<include-->
-                    <!--android:id="@+id/toolbar"-->
-                    <!--layout="@layout/partial_toolbar"/>-->
+            <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:paddingBottom="17dp"/>
-        </LinearLayout>
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true">
 
-        <!--<com.google.android.material.floatingactionbutton.FloatingActionButton-->
-                <!--android:id="@+id/fab"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="bottom|end"-->
-                <!--android:layout_marginBottom="7dp"-->
-                <!--android:layout_marginEnd="8dp"-->
-                <!--android:src="@drawable/ic_add"-->
-        <!--/>-->
+                    <TextView
+                            android:text="Valor médio de glicemias"
+                            android:textSize="13sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/average_description"/>
 
+                    <TextView
+                            android:text="@{viewModel.average}"
+                            android:textSize="40sp"
+                            android:textAlignment="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:id="@+id/average_value"/>
 
-    <!--</androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+                </LinearLayout>
 
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/colorGrey"
+                android:id="@+id/historic_color"
+                android:layout_marginTop="16dp"
+                android:visibility="@{viewModel.averageVisibility}"
+        />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:paddingBottom="17dp"
+                tools:listitem="@layout/item_historic"/>
+    </LinearLayout>
 </layout>
