@@ -18,5 +18,8 @@ class Glucose (
     var value: String,
     @SerializedName("userId")
     @Expose
-    var userId: Long
+    var userId: Long,
+    @SerializedName("description")
+    @Expose
+    var description: String
 )

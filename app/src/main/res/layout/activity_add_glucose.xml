@@ -10,8 +10,6 @@
                 name="viewModel"
                 type="com.example.iaralopes.glico.core.addGlucose.AddGlucoseViewModel"/>
     </data>
-
-
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -21,122 +19,173 @@
                 android:id="@+id/toolbar"
                 layout="@layout/partial_toolbar"/>
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="90dp"
-                tools:context=".core.addGlucose.AddGlucoseActivity">
+                >
 
-
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/cardViewQuestion"
+            <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="18dp"
-                    app:cardCornerRadius="7dp"
-                    app:cardElevation="1dp"
-            >
-
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:orientation="vertical">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    tools:context=".core.addGlucose.AddGlucoseActivity">
 
 
-                    <TextView
-                            android:text="Em que momento você mediu a glicose?"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16dp"
-                            android:textAlignment="center"
-                            android:paddingTop="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingStart="10dp"
-                            android:paddingBottom="8dp"
-                            android:id="@+id/questionCategory"/>
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewQuestion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="18dp"
+                        app:cardCornerRadius="7dp"
+                        app:cardElevation="1dp"
+                >
 
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
-                            android:layout_gravity="center"
-                            android:textSize="16dp"
-                            android:padding="10dp"
-                            android:textColor="@color/colorAccent"
-                            android:layout_marginBottom="20dp"
-                            android:textAlignment="center"
-                            android:ems="10"
-                            android:id="@+id/answerCategory"
-                            android:text="@={viewModel.resultCategory}"
-                            android:onClick="onClickSelectCategory"/>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="vertical">
 
 
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/cardViewGlucose"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="18dp"
-                    app:cardCornerRadius="7dp"
-                    app:cardElevation="1dp"
-            >
+                        <TextView
+                                android:text="Em que momento você mediu a glicose?"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="16dp"
+                                android:textAlignment="center"
+                                android:paddingTop="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingStart="10dp"
+                                android:paddingBottom="8dp"
+                                android:id="@+id/questionCategory"/>
 
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:orientation="vertical">
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:inputType="textPersonName"
+                                android:layout_gravity="center"
+                                android:textSize="16dp"
+                                android:padding="10dp"
+                                android:textColor="@color/colorAccent"
+                                android:layout_marginBottom="20dp"
+                                android:textAlignment="center"
+                                android:ems="10"
+                                android:id="@+id/answerCategory"
+                                android:text="@={viewModel.resultCategory}"
+                                android:onClick="onClickSelectCategory"/>
 
-                    <TextView
-                            android:text="Qual foi o valor da glicose?"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16dp"
-                            android:textAlignment="center"
-                            android:paddingTop="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingStart="10dp"
-                            android:paddingBottom="8dp"
+                    </LinearLayout>
 
-                            android:id="@+id/questionValue"/>
+                </androidx.cardview.widget.CardView>
 
-                    <EditText
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"
-                            android:layout_gravity="center"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="16dp"
-                            android:padding="10dp"
-                            android:textAlignment="center"
-                            android:layout_marginBottom="20dp"
-                            android:ems="10"
-                            android:id="@+id/answerValue"
-                            android:text="@={viewModel.resultValue}"/>
 
-                </LinearLayout>
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewGlucose"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="18dp"
+                        app:cardCornerRadius="7dp"
+                        app:cardElevation="1dp"
+                >
 
-            </androidx.cardview.widget.CardView>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="vertical">
 
-            <Button
-                    android:text="Registrar"
-                    android:textColor="@color/colorWhite"
-                    android:background="@color/colorAccent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/addButton"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="18dp"
-                    android:onClick="onClickAddGlucose"
-            />
+                        <TextView
+                                android:text="Qual foi o valor da glicose?"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="16dp"
+                                android:textAlignment="center"
+                                android:paddingTop="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingStart="10dp"
+                                android:paddingBottom="8dp"
 
-        </LinearLayout>
+                                android:id="@+id/questionValue"/>
+
+                        <EditText
+                                android:layout_width="300dp"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:layout_gravity="center"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="16dp"
+                                android:padding="10dp"
+                                android:textAlignment="center"
+                                android:layout_marginBottom="20dp"
+                                android:ems="10"
+                                android:id="@+id/answerValue"
+                                android:text="@={viewModel.resultValue}"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="18dp"
+                        app:cardCornerRadius="7dp"
+                        app:cardElevation="1dp"
+                >
+
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="vertical">
+
+                        <TextView
+                                android:text="Você quer falar mais sobre?"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="16dp"
+                                android:textAlignment="center"
+                                android:paddingTop="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingStart="10dp"
+                                android:paddingBottom="8dp"
+                                android:id="@+id/questionDescription"/>
+
+                        <EditText
+                                android:layout_width="300dp"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:layout_gravity="center"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="16dp"
+                                android:padding="10dp"
+                                android:textAlignment="center"
+                                android:layout_marginBottom="20dp"
+                                android:ems="10"
+                                android:id="@+id/answerDescription"
+                                android:text="@={viewModel.resultDescription}"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <Button
+                        android:text="Registrar"
+                        android:textColor="@color/colorWhite"
+                        android:background="@color/colorAccent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/addButton"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="18dp"
+                        android:onClick="onClickAddGlucose"
+                />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
     </LinearLayout>
-
 </layout>

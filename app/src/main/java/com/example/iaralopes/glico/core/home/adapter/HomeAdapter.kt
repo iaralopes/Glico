@@ -1,5 +1,6 @@
 package com.example.iaralopes.glico.core.home.adapter
 
+import android.content.ClipDescription
 import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
@@ -38,6 +39,8 @@ class HomeAdapter(
         holder.historicData.text = list[position].data
         holder.historicValue.text = list[position].value
 
+        settingGlucoseDescription(holder, list[position].description)
+
         holder.historicColor.setBackgroundColor(getGlucoseColor(list[position].value.toInt()))
 
         holder.onClickDelete {
@@ -50,6 +53,15 @@ class HomeAdapter(
             )
         }
 
+    }
+
+    private fun settingGlucoseDescription(holder: HomeViewHolder, description: String) {
+        if (description.isEmpty()) {
+            holder.historicDescription.visibility = View.GONE
+            holder.historicDescriptionSeparator.visibility = View.GONE
+        } else {
+            holder.historicDescription.text = description
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -67,6 +79,8 @@ class HomeAdapter(
         var historicData = view.historic_data
         var historicValue = view.historic_value
         var historicColor = view.historic_color
+        var historicDescription = view.historic_description
+        var historicDescriptionSeparator = view.historic_description_separator
 
         fun onClickDelete(onClick: () -> Unit) {
             view.delete_glucose.setOnClickListener { onClick() }

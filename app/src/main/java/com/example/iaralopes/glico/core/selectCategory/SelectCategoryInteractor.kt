@@ -27,7 +27,8 @@ class SelectCategoryInteractor @Inject constructor(
                     date = glucose.data,
                     category = glucose.category,
                     value = glucose.value,
-                    userId = 1
+                    userId = 1,
+                    description = glucose.description
                 ))
             }
         }

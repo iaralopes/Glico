@@ -17,6 +17,7 @@ class AddGlucoseViewModel @Inject constructor(val addGlucoseInteractor: AddGluco
 
     val resultCategory = ObservableField<String>()
     val resultValue = ObservableField<String>()
+    val resultDescription = ObservableField<String>()
 
     init {
         resultCategory.set("clique para selecionar")
@@ -37,7 +38,8 @@ class AddGlucoseViewModel @Inject constructor(val addGlucoseInteractor: AddGluco
                         GlucoseEntity(
                             category = resultCategory.get().toString(),
                             data = getTodayDate(),
-                            value = resultValue.get().toString()
+                            value = resultValue.get().toString(),
+                            description = getResultDescription()
                         )
                     )
                 ) { addGlucoseState.value = (it) }
@@ -56,11 +58,14 @@ class AddGlucoseViewModel @Inject constructor(val addGlucoseInteractor: AddGluco
         }
     }
 
+    private fun getResultDescription() = resultDescription.get()?.let {it} ?: ""
+
     private fun hasGlucoseValue(): Boolean {
         var hasGlucoseValue = false
 
-        if (!resultValue.get().isNullOrEmpty()) { hasGlucoseValue = true }
-        else {
+        if (!resultValue.get().isNullOrEmpty()) {
+            hasGlucoseValue = true
+        } else {
             addGlucoseState.postValue(
                 FlowState(
                     FlowState.Status.ERROR, error =

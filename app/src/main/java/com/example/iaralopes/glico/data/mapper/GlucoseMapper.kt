@@ -9,7 +9,8 @@ object GlucoseMapper {
         return GlucoseEntity(
             category = glucoseRemote.category,
             data = glucoseRemote.date,
-            value = glucoseRemote.value
+            value = glucoseRemote.value,
+            description = glucoseRemote.description
         )
     }
 }

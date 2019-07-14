@@ -26,7 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".core.addGlucose.AddGlucoseActivity">
+        <activity android:name=".core.addGlucose.AddGlucoseActivity"
+                  android:windowSoftInputMode="stateHidden|adjustResize">
         </activity>
         <activity android:name=".core.selectCategory.SelectCategoryActivity">
         </activity>

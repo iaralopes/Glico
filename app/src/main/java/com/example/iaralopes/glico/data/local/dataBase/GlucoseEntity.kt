@@ -10,5 +10,6 @@ data class GlucoseEntity (
     var id: Long = 0,
     var category: String,
     var data: String,
-    var value: String
+    var value: String,
+    var description: String
 )
